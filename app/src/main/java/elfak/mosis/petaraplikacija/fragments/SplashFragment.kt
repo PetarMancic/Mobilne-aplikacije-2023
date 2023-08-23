@@ -52,11 +52,11 @@ private lateinit var navConotroler: NavController
    // }
         }, 3000)
 
-        val continueButton: Button = view.findViewById(R.id.continueButton)
+      /*  val continueButton: Button = view.findViewById(R.id.continueButton)
         continueButton.setOnClickListener {
             Toast.makeText(requireContext(), "petar", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_splashFragment_to_signinFragment)
-        }
+        }*/
     }
 
 

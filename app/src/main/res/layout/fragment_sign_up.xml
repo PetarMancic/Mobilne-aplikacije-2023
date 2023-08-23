@@ -10,15 +10,15 @@
 
     <EditText
         android:id="@+id/editTextTextEmailAddress"
-        android:layout_width="270dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
 
         android:layout_centerInParent="true"
-        android:layout_marginStart="99dp"
+
         android:layout_marginLeft="40dp"
-        android:layout_marginEnd="98dp"
+
         android:layout_marginRight="40dp"
         android:layout_marginBottom="16dp"
         android:ems="10"
@@ -27,6 +27,7 @@
         android:minHeight="48dp"
         android:shadowRadius="8"
         android:textSize="18sp" />
+
 
 
     <RelativeLayout
@@ -42,11 +43,11 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="71dp"
-            android:layout_marginLeft="30dp"
+
+            android:layout_marginLeft="40dp"
             android:layout_marginTop="-9dp"
-            android:layout_marginEnd="81dp"
-            android:layout_marginRight="38dp"
+
+            android:layout_marginRight="40dp"
             android:ems="10"
             android:hint="@string/type_ur_pass"
             android:inputType="textPassword"
@@ -59,8 +60,8 @@
             android:layout_height="26dp"
             android:layout_alignEnd="@id/editTextTextPassword"
             android:layout_alignBottom="@id/editTextTextPassword"
-            android:layout_marginEnd="-29dp"
-            android:layout_marginBottom="11dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="12dp"
             android:clickable="true"
             android:src="@drawable/hide" />
 
@@ -73,11 +74,12 @@
 
         <EditText
             android:id="@+id/editTextConfirmpass"
-            android:layout_width="261dp"
-            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginStart="72dp"
-            android:layout_marginEnd="35dp"
+
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
             android:hint="Confirm password"
             android:inputType="textPassword"
             android:textSize="18sp" />
@@ -90,12 +92,68 @@
             android:layout_alignEnd="@id/editTextConfirmpass"
             android:layout_marginStart="8dp"
             android:layout_marginTop="5dp"
-            android:layout_marginEnd="-28dp"
-            android:foregroundGravity="center"
+            android:layout_marginEnd="2dp"
             android:clickable="true"
+            android:foregroundGravity="center"
             android:src="@drawable/hide" />
 
     </RelativeLayout>
+
+    <EditText
+        android:id="@+id/editTextTextFirstName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ime"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/editTextTextLastName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Prezime"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/editTextPhoneNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Broj telefona"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:inputType="phone"
+        android:minHeight="48dp"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/buttonSlikanje"
+        android:layout_width="128dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="42dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="150dp"
+        android:background="@android:color/holo_blue_bright"
+        android:text="Otvori kameru"
+        android:textColor="#040303">
+
+
+    </Button>
 
     <Button
         android:id="@+id/loginButtonsignup"
@@ -106,32 +164,31 @@
 
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="149dp"
+
         android:layout_marginLeft="70dp"
         android:layout_marginTop="21dp"
-        android:layout_marginEnd="168dp"
+
         android:layout_marginRight="70dp"
         android:background="@android:color/holo_green_light"
         android:text="Register now" />
 
     <TextView
         android:id="@+id/signUpLabel"
-        android:layout_width="106dp"
-        android:layout_height="59dp"
+        android:layout_width="188dp"
+        android:layout_height="67dp"
         android:layout_below="@+id/loginButtonsignup"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="140dp"
+
         android:layout_marginTop="13dp"
-        android:layout_marginEnd="165dp"
+
         android:layout_marginBottom="135dp"
         android:gravity="center_horizontal|center_vertical"
-        android:text="Sign up"
+        android:text="You have account already? Sign up!"
         android:textColor="@android:color/holo_blue_dark"
         android:textSize="18sp" />
-
 
 
 </LinearLayout>

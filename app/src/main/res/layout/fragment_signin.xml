@@ -5,14 +5,8 @@
     android:gravity="center">
 
 
-    <ImageView
-        android:id="@+id/slikaSign_in"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="0dp"
-        android:src="@drawable/signin" />
+
+
 
     <EditText
         android:id="@+id/editTextTextEmailAddress"
@@ -20,11 +14,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="103dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginEnd="94dp"
 
+
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:layout_marginBottom="16dp"
         android:ems="10"
@@ -43,10 +37,10 @@
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
 
-        android:layout_marginStart="100dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginEnd="97dp"
-        android:layout_marginRight="30dp"
+
+        android:layout_marginLeft="40dp"
+
+        android:layout_marginRight="40dp"
         android:ems="10"
         android:hint="@string/type_ur_pass"
         android:inputType="textPassword"
@@ -73,28 +67,29 @@
 
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="149dp"
-        android:layout_marginLeft="70dp"
+
+        android:layout_marginLeft="80dp"
         android:layout_marginTop="21dp"
-        android:layout_marginEnd="168dp"
-        android:layout_marginRight="70dp"
+
+        android:layout_marginRight="80dp"
         android:background="@android:color/holo_green_light"
         android:text="Log In" />
 
     <TextView
         android:id="@+id/signUpLabel"
-        android:layout_width="131dp"
-        android:layout_height="49dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/loginButtonsignup"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="156dp"
+
+        android:layout_marginLeft="80dp"
         android:layout_marginTop="14dp"
-        android:layout_marginEnd="180dp"
-        android:layout_marginBottom="177dp"
-        android:gravity="center_horizontal"
+        android:layout_marginRight="80dp"
+        android:layout_marginBottom="135dp"
+        android:gravity="center_horizontal|center_vertical"
         android:text="Register now"
         android:textColor="@android:color/holo_blue_dark"
         android:textSize="18sp" />
