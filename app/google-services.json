@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1047639822053",
+    "project_id": "petar-aplikacija",
+    "storage_bucket": "petar-aplikacija.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1047639822053:android:ad06a5bb514bbdba094e0c",
+        "android_client_info": {
+          "package_name": "elfak.mosis.petaraplikacija"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1047639822053-j9095479f3j42coopg1ijsik1ef7jdap.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWMLaeNcdlhtTmPbhDSu8o8HTkvtbW51Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1047639822053-j9095479f3j42coopg1ijsik1ef7jdap.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
