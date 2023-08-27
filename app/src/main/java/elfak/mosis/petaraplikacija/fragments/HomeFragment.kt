@@ -1,60 +1,94 @@
 package elfak.mosis.petaraplikacija.fragments
 
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.fragment.app.activityViewModels
+import com.bumptech.glide.Glide
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.storage.FirebaseStorage
+import elfak.mosis.petaraplikacija.MojiFrizerskiSaloni.data.FrizerskiSalonViewModel
+import elfak.mosis.petaraplikacija.MojiFrizerskiSaloni.data.SigninViewModel
+import elfak.mosis.petaraplikacija.MojiFrizerskiSaloni.data.UserData
 import elfak.mosis.petaraplikacija.R
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class HomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    private val SigninViewModel: SigninViewModel by activityViewModels()
+    private lateinit var txtFirstName: TextView
+    private lateinit var txtLastName: TextView
+    private lateinit var txtScore: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+       setHasOptionsMenu(true)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val rootView = inflater.inflate(R.layout.fragment_home, container, false)
+
+        txtFirstName = rootView.findViewById(R.id.txtFirstName)
+        txtLastName = rootView.findViewById(R.id.txtLastName)
+        txtScore = rootView.findViewById(R.id.txtScore)
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        return  rootView;
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val user: List<UserData> =SigninViewModel.getUser();
+
+            if(user.isNotEmpty())
+            {
+                val ime=user.get(0).ime;
+                val prezime=user.get(0).prezime;
+                val brojBodova=user.get(0).brojBodova;
+
+               val textViewIme= view.findViewById<TextView>(R.id.txtFirstName);
+                val textViewPrezime= view.findViewById<TextView>(R.id.txtLastName);
+                val textViewBrojBodova= view.findViewById<TextView>(R.id.txtScore);
+                textViewIme.text=ime;
+                textViewPrezime.text=prezime;
+                textViewBrojBodova.text=brojBodova.toString();
+            }
+
+        var imgProfile=view.findViewById<ImageView>(R.id.imgProfile);
+
+
+
+        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
+        val storageReference = FirebaseStorage.getInstance().reference
+        val imageReference = storageReference.child("profile_images/$userId.jpg")
+    imageReference.getBytes(Long.MAX_VALUE).addOnSuccessListener {
+        val bmp=BitmapFactory.decodeByteArray(it,0,it.size)
+        imgProfile.setImageBitmap(bmp);
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+     //   val storageReference = FirebaseStorage.getInstance().getReference("gs://petar-aplikacija.appspot.com/$userId.jpg")
+       /* Glide.with(this)
+            .load(imageReference)
+            .into(imgProfile)
+*/
+
+        }
+
+
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        val item = menu.findItem(R.id.signinFragment)
+        item.isVisible = false
     }
 }

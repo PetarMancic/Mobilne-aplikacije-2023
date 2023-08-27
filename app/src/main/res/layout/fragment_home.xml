@@ -1,14 +1,45 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/txtFirstName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Ime"
+        android:textSize="18sp"/>
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/txtLastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtFirstName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:text="Prezime"
+        android:textSize="18sp"/>
+
+    <ImageView
+        android:id="@+id/imgProfile"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:layout_below="@id/txtLastName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:id="@+id/txtScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imgProfile"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Broj bodova"
+        android:textSize="18sp"/>
+</RelativeLayout>

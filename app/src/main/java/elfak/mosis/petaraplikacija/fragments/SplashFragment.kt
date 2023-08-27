@@ -5,10 +5,12 @@ import android.os.Handler
 import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.core.view.children
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
@@ -52,6 +54,7 @@ private lateinit var navConotroler: NavController
    // }
         }, 3000)
 
+
       /*  val continueButton: Button = view.findViewById(R.id.continueButton)
         continueButton.setOnClickListener {
             Toast.makeText(requireContext(), "petar", Toast.LENGTH_SHORT).show()
@@ -59,6 +62,16 @@ private lateinit var navConotroler: NavController
         }*/
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
+    override fun onPrepareOptionsMenu(menu: Menu) {  // da se ne vide 3 tackice
+        super.onPrepareOptionsMenu(menu)
+        for (x in menu.children) {
+            x.isVisible = false
+        }
+    }
 
 }

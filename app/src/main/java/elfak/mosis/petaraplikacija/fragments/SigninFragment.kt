@@ -3,16 +3,32 @@ package elfak.mosis.petaraplikacija.fragments
 import android.content.Context
 import android.content.Context.INPUT_METHOD_SERVICE
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.content.ContextCompat.getSystemService
+import androidx.core.view.children
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import elfak.mosis.petaraplikacija.MojiFrizerskiSaloni.data.FrizerskiSalonViewModel
+import elfak.mosis.petaraplikacija.MojiFrizerskiSaloni.data.SigninViewModel
+import elfak.mosis.petaraplikacija.MojiFrizerskiSaloni.data.UserData
 import elfak.mosis.petaraplikacija.R
 import elfak.mosis.petaraplikacija.databinding.FragmentSigninBinding
 
@@ -24,6 +40,11 @@ class SigninFragment : Fragment() {
     private lateinit var navControl: NavController
     private lateinit var binding: FragmentSigninBinding
 
+    private val korisnici: SigninViewModel by activityViewModels()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,16 +52,22 @@ class SigninFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentSigninBinding.inflate(inflater, container, false);
+       // setHasOptionsMenu(true)
 
         return binding.root
-    }
 
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
+
         init(view)
         registerEvents()
+
+
 
     }
 
@@ -69,6 +96,7 @@ class SigninFragment : Fragment() {
             val pass = binding.editTextTextPassword.text.toString().trim()
 
 
+
             if (email.isNotEmpty() && pass.isNotEmpty()) {
                 // ako se sifre poklapaju
 
@@ -77,7 +105,33 @@ class SigninFragment : Fragment() {
                     if (it.isSuccessful) {
                         Toast.makeText(context, "Uspesno ste ste login!!!", Toast.LENGTH_SHORT)
                             .show()
-                        navControl.navigate(R.id.action_signinFragment_to_homeFragment);
+
+                        val userId= auth.currentUser?.uid ?: ""
+                        val userReference= FirebaseDatabase.getInstance().getReference("users").child(userId);
+                        userReference.addListenerForSingleValueEvent(object: ValueEventListener{
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                               if (snapshot.exists()){
+                                   Toast.makeText(context, "Snap!!", Toast.LENGTH_SHORT).show()
+                                   val userData = snapshot.getValue(UserData::class.java)
+                                    if(userData!=null) {
+                                        korisnici.dodajUsera(userData);
+                                        navControl.navigate(R.id.action_signinFragment_to_homeFragment);
+                                    } // on ovamo uopste ne udje, jer ako udje ce prebaci na homeFragment
+                                   //u home fragment nije namesteno da cita podaci iz viewmodel
+                                   // Raboti sig cim ga je navigiral, sad ce probam da ga dodam
+                               }
+                            }
+//znaci ja ocu kao sto rekomo, sad ce ti pokazem kvo sam napravio, imam viewModel za korisnika, i kad se uloguje da povucem podaci
+                            //i da se to upise u viewmodel , a onda iz home fragment samo da ih prikazem i procitam
+                            // Ovijata user ne postoji u rtdb, cek da vidim u auth ima li ga
+                            override fun onCancelled(error: DatabaseError) {
+                                Log.e("FirebaseDatabase", "Greška pri čitanju: ${error.message}")
+                            }
+                        })
+
+
+
+                      //  navControl.navigate(R.id.action_signinFragment_to_homeFragment);
 
                     } else {
                         Toast.makeText(context, it.exception?.message, Toast.LENGTH_SHORT).show()
@@ -91,6 +145,13 @@ class SigninFragment : Fragment() {
 
 
     }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        val item = menu.findItem(R.id.signinFragment)
+        item.isVisible = false
+    }
+
 
 
 
