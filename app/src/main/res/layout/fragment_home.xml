@@ -8,30 +8,51 @@
 
     <TextView
         android:id="@+id/txtFirstName"
-        android:layout_width="wrap_content"
+        style="@style/Mojstajl"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
+        android:fontFamily="cursive"
+        android:gravity="center_horizontal|center_vertical"
         android:text="Ime"
-        android:textSize="18sp"/>
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/txtLastName"
-        android:layout_width="wrap_content"
+        style="@style/Mojstajl"
+        android:layout_width="99dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/txtFirstName"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
+        android:gravity="center_horizontal|center_vertical"
         android:text="Prezime"
-        android:textSize="18sp"/>
+        android:textSize="18sp" />
 
     <ImageView
         android:id="@+id/imgProfile"
-        android:layout_width="240dp"
-        android:layout_height="240dp"
+        android:layout_width="206dp"
+        android:layout_height="130dp"
         android:layout_below="@id/txtLastName"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp" />
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginRight="50dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="107dp"
+        android:layout_marginTop="232dp"
+        android:layout_marginEnd="107dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="Trenutni broj bodova"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/txtScore"
@@ -39,7 +60,28 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/imgProfile"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="49dp"
         android:text="Broj bodova"
-        android:textSize="18sp"/>
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/buttonFiltiraj"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="45dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:text="Filtriraj" />
+
+    <Button
+        android:id="@+id/buttonOdjavise"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="45dp"
+        android:layout_marginEnd="45dp"
+        android:text="Odjavi se" />
 </RelativeLayout>

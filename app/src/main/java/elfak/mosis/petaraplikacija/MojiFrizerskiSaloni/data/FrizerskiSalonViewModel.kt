@@ -14,6 +14,10 @@ class FrizerskiSalonViewModel : ViewModel(){
         return FrizerskiSaloni
     }
 
+    fun postaviNaNull()
+    {
+        FrizerskiSaloni.clear();
 
+    }
 
 }

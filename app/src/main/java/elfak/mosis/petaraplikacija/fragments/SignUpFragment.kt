@@ -20,6 +20,7 @@ import android.widget.Toast
 import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.Snackbar
 import androidx.core.app.ActivityCompat
+import androidx.core.view.children
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -102,7 +103,9 @@ class SignUpFragment : Fragment() {
             val userMap = mapOf(
                 "ime" to ime,
                 "prezime" to prezime,
-                "brojTelefona" to brojtelefona
+                "brojTelefona" to brojtelefona,
+                "brojBodova" to 0
+
             )
 
             usersReference.child(firebaseUser.uid).setValue(userMap).addOnCompleteListener { task ->
@@ -203,16 +206,11 @@ class SignUpFragment : Fragment() {
         imageReference.putBytes(byteArr)
 
     }
-    override fun onPrepareOptionsMenu(menu: Menu) {
+    override fun onPrepareOptionsMenu(menu: Menu) {  // da se ne vide 3 tackice
         super.onPrepareOptionsMenu(menu)
-
-
-        val item = menu.findItem(R.id.signUpFragment)
-        item.isVisible = false
-
-
-        // Vraćanje true ukazuje da je meni pripremljen i treba biti prikazan
-
+        for (x in menu.children) {
+            x.isVisible = false
+        }
     }
 
 

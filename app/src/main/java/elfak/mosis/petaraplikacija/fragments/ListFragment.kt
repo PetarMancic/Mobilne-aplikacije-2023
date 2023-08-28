@@ -87,5 +87,11 @@ var displayMessage: String? = "";
         super.onPrepareOptionsMenu(menu)
         val item = menu.findItem(elfak.mosis.petaraplikacija.R.id.listFragment)
         item.isVisible = false
+
+        val item1 = menu.findItem(R.id.signinFragment)
+        item1.isVisible = false
+
+        val item2 = menu.findItem(R.id.signUpFragment)
+        item2.isVisible = false
     }
 }

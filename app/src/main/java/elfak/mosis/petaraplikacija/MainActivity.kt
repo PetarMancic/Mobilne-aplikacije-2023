@@ -85,6 +85,8 @@ class MainActivity : AppCompatActivity() {
                     R.id.signUpFragment -> { navController.navigate(R.id.action_signUpFragment_to_homeFragment) }
                     R.id.signinFragment -> { navController.navigate(R.id.action_signinFragment_to_homeFragment) }
                     R.id.listFragment -> { navController.navigate(R.id.action_listFragment_to_homeFragment) }
+                    R.id.editFragment -> { navController.navigate(R.id.action_editFragment_to_homeFragment) }
+
                 }
             }
           R.id.signinFragment -> {
@@ -110,6 +112,7 @@ class MainActivity : AppCompatActivity() {
                     R.id.homeFragment -> { navController.navigate(R.id.action_homeFragment_to_mapFragment) }
                     R.id.signinFragment -> { navController.navigate(R.id.action_signinFragment_to_mapFragment) }
                     R.id.listFragment -> { navController.navigate(R.id.action_listFragment_to_mapFragment) }
+                    R.id.editFragment -> { navController.navigate(R.id.action_editFragment_to_mapFragment) }
                 }
             }
 
@@ -119,13 +122,14 @@ class MainActivity : AppCompatActivity() {
                     R.id.homeFragment -> { navController.navigate(R.id.action_homeFragment_to_listFragment) }
                     R.id.signinFragment -> { navController.navigate(R.id.action_signinFragment_to_listFragment) }
                     R.id.mapFragment->{navController.navigate(R.id.action_mapFragment_to_listFragment)}
+                    R.id.editFragment -> { navController.navigate(R.id.action_editFragment_to_listFragment) }
                 }
             }
             R.id.editFragment -> {
                 when (navController.currentDestination?.id) {
 
-                    R.id.homeFragment -> { navController.navigate(R.id.action_homeFragment_to_editFragment) }
-                    R.id.mapFragment->{navController.navigate(R.id.action_mapFragment_to_editFragment)}
+                    R.id.homeFragment -> { navController.navigate(R.id.action_homeFragment_to_editFragment2) }
+                    R.id.mapFragment->{navController.navigate(R.id.action_mapFragment_to_editFragment3)}
                     R.id.listFragment->{navController.navigate(R.id.action_listFragment_to_editFragment)}
 
                 }
@@ -137,6 +141,7 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
     override fun onBackPressed() {
+        val navController = findNavController(R.id.nav_host_fragment_content_main)
         if (!navController.navigateUp()) {
             super.onBackPressed()
         }

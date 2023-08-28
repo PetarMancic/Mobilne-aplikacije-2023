@@ -2,30 +2,103 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".fragments.EditFragment">
 
     <EditText
         android:id="@+id/editName"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Name"
+        android:layout_height="match_parent"
+        android:hint="Ime frizerskog salona"
         android:padding="16dp" />
 
     <EditText
         android:id="@+id/editDescription"
-        android:layout_width="400dp"
-        android:layout_height="514dp"
-        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="122dp"
         android:gravity="top"
-        android:hint="Description"
+        android:hint="Kratak opis"
         android:padding="16dp" />
+
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radioMuski"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Muški" />
+
+        <RadioButton
+            android:id="@+id/radioZenski"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ženski" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textOcenjivanje"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="Ocena 1/10"
+        android:textSize="18sp">
+
+    </TextView>
+
+    <EditText
+        android:id="@+id/numberPicker"
+        android:layout_width="141dp"
+        android:layout_height="59dp"
+        android:layout_gravity="center"
+        android:inputType="number"
+        android:autofillHints="Ocena od 1/10" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="132dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/editLongitude"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Longitude:"
+            android:padding="16dp" />
+
+        <EditText
+            android:id="@+id/editLatitude"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Latitude"
+            android:padding="16dp" />
+
+
+        <Button
+            android:id="@+id/btnSet"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="120dp"
+            android:layout_marginRight="120dp"
+            android:layout_weight="1"
+            android:text="Set" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="352dp"
         android:orientation="horizontal">
+
 
         <Button
             android:id="@+id/btnAdd"

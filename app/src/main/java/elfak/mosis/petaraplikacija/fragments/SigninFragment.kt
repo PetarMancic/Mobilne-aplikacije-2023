@@ -11,6 +11,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.Button
 import android.widget.Toast
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.view.children
@@ -60,15 +61,8 @@ class SigninFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-
-
         init(view)
         registerEvents()
-
-
-
     }
 
     private fun hideKeyboard() {
@@ -98,8 +92,6 @@ class SigninFragment : Fragment() {
 
 
             if (email.isNotEmpty() && pass.isNotEmpty()) {
-                // ako se sifre poklapaju
-
                 auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
                     hideKeyboard()
                     if (it.isSuccessful) {
@@ -115,30 +107,24 @@ class SigninFragment : Fragment() {
                                    val userData = snapshot.getValue(UserData::class.java)
                                     if(userData!=null) {
                                         korisnici.dodajUsera(userData);
+                                        // Sad raboti, kude je problem dalje
+                                        //edit fragment, kad on treba da se prikaze, ili pucaju greske,
+                                        //ili se prikaze ali njegov sadrzaj ne bude, nego bude sadrzaj od signUpfragment
                                         navControl.navigate(R.id.action_signinFragment_to_homeFragment);
-                                    } // on ovamo uopste ne udje, jer ako udje ce prebaci na homeFragment
-                                   //u home fragment nije namesteno da cita podaci iz viewmodel
-                                   // Raboti sig cim ga je navigiral, sad ce probam da ga dodam
+                                    }
                                }
                             }
-//znaci ja ocu kao sto rekomo, sad ce ti pokazem kvo sam napravio, imam viewModel za korisnika, i kad se uloguje da povucem podaci
-                            //i da se to upise u viewmodel , a onda iz home fragment samo da ih prikazem i procitam
-                            // Ovijata user ne postoji u rtdb, cek da vidim u auth ima li ga
+
                             override fun onCancelled(error: DatabaseError) {
                                 Log.e("FirebaseDatabase", "Greška pri čitanju: ${error.message}")
                             }
                         })
-
-
-
-                      //  navControl.navigate(R.id.action_signinFragment_to_homeFragment);
+                    //  navControl.navigate(R.id.action_signinFragment_to_homeFragment);
 
                     } else {
                         Toast.makeText(context, it.exception?.message, Toast.LENGTH_SHORT).show()
                     }
                 }
-
-
             }
 
         }
@@ -146,13 +132,13 @@ class SigninFragment : Fragment() {
 
     }
 
-    override fun onPrepareOptionsMenu(menu: Menu) {
+
+    override fun onPrepareOptionsMenu(menu: Menu) {  // da se ne vide 3 tackice
         super.onPrepareOptionsMenu(menu)
-        val item = menu.findItem(R.id.signinFragment)
-        item.isVisible = false
+        for (x in menu.children) {
+            x.isVisible = false
+        }
     }
-
-
 
 
 }

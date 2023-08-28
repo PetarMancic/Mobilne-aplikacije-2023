@@ -10,9 +10,10 @@
 
     <ImageView
         android:id="@+id/profilePicture"
-        android:layout_width="match_parent"
-        android:layout_height="256dp"
-        android:src="@drawable/elfak"/>
+        android:layout_width="288dp"
+        android:layout_height="147dp"
+        android:layout_marginTop="70dp"
+        android:src="@drawable/elfak" />
 
     <EditText
         android:id="@+id/editTextTextEmailAddress"
@@ -183,7 +184,7 @@
 
         android:layout_marginBottom="135dp"
         android:gravity="center_horizontal|center_vertical"
-        android:text="You have account already? Sign up!"
+        android:text="You have account already? Sign in!"
         android:textColor="@android:color/holo_blue_dark"
         android:textSize="18sp" />
 

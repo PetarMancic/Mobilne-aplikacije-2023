@@ -91,6 +91,12 @@
         <action
             android:id="@+id/action_homeFragment_to_editFragment"
             app:destination="@id/editFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_filtrirajFragment"
+            app:destination="@id/filtrirajFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_editFragment2"
+            app:destination="@id/editFragment" />
     </fragment>
     <fragment
         android:id="@+id/mapFragment"
@@ -115,6 +121,12 @@
         <action
             android:id="@+id/action_mapFragment_to_listFragment2"
             app:destination="@id/listFragment" />
+        <action
+            android:id="@+id/action_mapFragment_to_editFragment2"
+            app:destination="@id/editFragment" />
+        <action
+            android:id="@+id/action_mapFragment_to_editFragment3"
+            app:destination="@id/editFragment" />
     </fragment>
     <fragment
         android:id="@+id/listFragment"
@@ -146,9 +158,30 @@
         android:id="@+id/editFragment"
         android:name="elfak.mosis.petaraplikacija.fragments.EditFragment"
         android:label="fragment_edit"
-        tools:layout="@layout/fragment_edit" >
+        tools:layout="@layout/fragment_edit">
         <action
             android:id="@+id/action_editFragment_to_listFragment"
             app:destination="@id/listFragment" />
+        <action
+            android:id="@+id/action_editFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+        <action
+            android:id="@+id/action_editFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_editFragment_to_mapFragment2"
+            app:destination="@id/mapFragment" />
+        <action
+            android:id="@+id/action_editFragment_to_listFragment2"
+            app:destination="@id/listFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/filtrirajFragment"
+        android:name="elfak.mosis.petaraplikacija.FiltrirajFragment"
+        android:label="fragment_filtriraj"
+        tools:layout="@layout/fragment_filtriraj">
+        <action
+            android:id="@+id/action_filtrirajFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

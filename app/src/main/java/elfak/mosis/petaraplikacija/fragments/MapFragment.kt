@@ -10,11 +10,24 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import elfak.mosis.petaraplikacija.MojiFrizerskiSaloni.data.FrizerskiSalon
+import elfak.mosis.petaraplikacija.MojiFrizerskiSaloni.data.FrizerskiSalonViewModel
+import elfak.mosis.petaraplikacija.MojiFrizerskiSaloni.data.LocationViewModel
+import elfak.mosis.petaraplikacija.MojiFrizerskiSaloni.data.UserData
 import elfak.mosis.petaraplikacija.R
 import org.osmdroid.views.MapView
 import org.osmdroid.config.Configuration
+import org.osmdroid.events.MapEventsReceiver
 import org.osmdroid.util.GeoPoint
+import org.osmdroid.views.overlay.MapEventsOverlay
+import org.osmdroid.views.overlay.Marker
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
 
@@ -23,6 +36,8 @@ class MapFragment : Fragment() {
 
     lateinit var map:MapView
 
+    private val locationViewModel: LocationViewModel by activityViewModels()
+    private val frizerskiSalon: FrizerskiSalonViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +67,7 @@ class MapFragment : Fragment() {
         }else
         {
             setMyLocationOverlay()
+            setOnMapClickOveralay()
         }
 
         map.controller.setZoom(15.0)
@@ -59,6 +75,26 @@ class MapFragment : Fragment() {
         map.controller.setCenter(startPoint)
         //map.invalidate()
 
+            ucitajSveFrizerskeSalone();
+    }
+
+    private fun setOnMapClickOveralay() {
+        var receive= object:  MapEventsReceiver{
+            override fun singleTapConfirmedHelper(p: GeoPoint?): Boolean {
+                var lon= p?.longitude.toString();
+                var lat=p?.latitude.toString();
+                locationViewModel.setLocation(lon, lat)
+                //findNavController().popBackStack();
+                findNavController().navigate(R.id.action_mapFragment_to_editFragment2);
+                return true
+            }
+
+            override fun longPressHelper(p: GeoPoint?): Boolean {
+                return false;
+            }
+        }
+        var overlayEvents= MapEventsOverlay(receive);
+        map.overlays.add(overlayEvents);
     }
 
     private fun setMyLocationOverlay() {
@@ -71,6 +107,7 @@ class MapFragment : Fragment() {
     ) { isGranted: Boolean ->
         if (isGranted) {
             setMyLocationOverlay()
+            setOnMapClickOveralay()
         }
     }
 
@@ -90,5 +127,45 @@ class MapFragment : Fragment() {
         super.onPrepareOptionsMenu(menu)
         val item = menu.findItem(R.id.mapFragment)
         item.isVisible = false
+
+        val item1= menu.findItem(R.id.signUpFragment);
+        val item2= menu.findItem(R.id.signinFragment);
+        item1.isVisible=false;
+        item2.isVisible=false;
+
     }
+
+    fun ucitajSveFrizerskeSalone()
+    {
+        val db = FirebaseDatabase.getInstance().getReference("objekti");
+
+        db.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+
+        for(jedanObjekat in snapshot.children)
+        {
+            val jedanFrizerskiSalon = jedanObjekat.getValue(FrizerskiSalon::class.java)
+            createMarker(jedanFrizerskiSalon!!);
+        }
+                    map.invalidate();
+
+
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Obrada greške
+            }
+        })
+
+    }
+    fun createMarker(frizerskiSalon: FrizerskiSalon)
+    {
+        val marker = Marker(map)
+        map.overlays?.add(marker)
+        marker.position = GeoPoint(frizerskiSalon.latitude.toDouble(), frizerskiSalon.longitude.toDouble())
+        marker.title = frizerskiSalon.toString()
+    }
+
 }
