@@ -42,7 +42,6 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
     }
 
     override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {

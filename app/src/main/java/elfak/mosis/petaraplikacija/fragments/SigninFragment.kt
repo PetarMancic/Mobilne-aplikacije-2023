@@ -100,7 +100,7 @@ class SigninFragment : Fragment() {
 
                         val userId= auth.currentUser?.uid ?: ""
                         val userReference= FirebaseDatabase.getInstance().getReference("users").child(userId);
-                        userReference.addListenerForSingleValueEvent(object: ValueEventListener{
+                        userReference.addListenerForSingleValueEvent(object: ValueEventListener {
                             override fun onDataChange(snapshot: DataSnapshot) {
                                if (snapshot.exists()){
                                    Toast.makeText(context, "Snap!!", Toast.LENGTH_SHORT).show()

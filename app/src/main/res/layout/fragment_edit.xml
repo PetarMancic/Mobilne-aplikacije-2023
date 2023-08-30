@@ -7,7 +7,7 @@
     tools:context=".fragments.EditFragment">
 
     <EditText
-        android:id="@+id/editName"
+        android:id="@+id/ime"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="Ime frizerskog salona"
@@ -89,7 +89,7 @@
             android:layout_marginLeft="120dp"
             android:layout_marginRight="120dp"
             android:layout_weight="1"
-            android:text="Set" />
+            android:text="Izmeni podatke" />
 
 
     </LinearLayout>
@@ -106,7 +106,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:layout_weight="1"
-            android:text="Add" />
+            android:text="Dodaj " />
 
         <Button
             android:id="@+id/btnCancel"

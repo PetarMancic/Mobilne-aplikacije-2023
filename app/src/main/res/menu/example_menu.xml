@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/Edit"
+        android:title="Izmeni u bazi "/>
+
+    <item
+        android:id="@+id/dodavanje"
+        android:title="dodaj komentar i ocenu"/>
+    <item
+        android:id="@+id/komentari"
+        android:title="vidi sve komentare"/>
+
+</menu>

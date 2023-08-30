@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.activityViewModels
@@ -75,6 +77,23 @@ class MapFragment : Fragment() {
         map.controller.setCenter(startPoint)
         //map.invalidate()
 
+        var dugmePlus= view.findViewById<Button>(R.id.buttonDodaj);
+        dugmePlus.setOnClickListener()
+        {
+            val myLocationOverlay = map.overlays.find { it is MyLocationNewOverlay } as MyLocationNewOverlay?
+            if (myLocationOverlay != null && myLocationOverlay.myLocation != null) {
+                val currentLocation = myLocationOverlay.myLocation
+                val latitude = currentLocation.latitude
+                val longitude = currentLocation.longitude
+
+                locationViewModel.setLocation(longitude.toString(), latitude.toString());
+
+                //findNavController().popBackStack();
+                findNavController().navigate(R.id.action_mapFragment_to_editFragment2);
+                // Sada možete koristiti latitude i longitude za dalje manipulacije
+            }
+        }
+
             ucitajSveFrizerskeSalone();
     }
 
@@ -96,6 +115,7 @@ class MapFragment : Fragment() {
         var overlayEvents= MapEventsOverlay(receive);
         map.overlays.add(overlayEvents);
     }
+
 
     private fun setMyLocationOverlay() {
        var myLocationOverlay= MyLocationNewOverlay(GpsMyLocationProvider(activity),map)

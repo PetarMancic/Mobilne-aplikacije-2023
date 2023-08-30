@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragments.DetailFragment">
+
+    <TextView
+        android:id="@+id/ime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="Ime"
+        android:padding="16dp"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/editDescription"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:gravity="top"
+        android:hint="Komentar o objektu..."
+        android:padding="16dp" />
+
+
+    <TextView
+        android:id="@+id/textOcenjivanje"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_marginBottom="15dp"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="Ocenite ovaj frizerski salon 1/10"
+        android:textSize="18sp">
+
+    </TextView>
+
+    <EditText
+        android:id="@+id/numberPicker"
+        android:layout_width="141dp"
+        android:layout_height="59dp"
+        android:layout_gravity="center"
+        android:inputType="number"
+        android:autofillHints="Ocena od 1/10" />
+
+    <Button
+        android:id="@+id/buttonAzuriraj"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="90dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="90dp"
+        android:text="Sacuvaj promene" />
+
+</LinearLayout>

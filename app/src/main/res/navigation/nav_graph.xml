@@ -148,6 +148,12 @@
         <action
             android:id="@+id/action_listFragment_to_editFragment"
             app:destination="@id/editFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_komentariFragment"
+            app:destination="@id/komentariFragment" />
     </fragment>
     <fragment
         android:id="@+id/probaFragment"
@@ -183,5 +189,26 @@
         <action
             android:id="@+id/action_filtrirajFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="elfak.mosis.petaraplikacija.fragments.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" >
+        <action
+            android:id="@+id/action_detailFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+        <action
+            android:id="@+id/action_detailFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/komentariFragment"
+        android:name="elfak.mosis.petaraplikacija.fragments.KomentariFragment"
+        android:label="fragment_komentari"
+        tools:layout="@layout/fragment_komentari" >
+        <action
+            android:id="@+id/action_komentariFragment_to_listFragment"
+            app:destination="@id/listFragment" />
     </fragment>
 </navigation>
