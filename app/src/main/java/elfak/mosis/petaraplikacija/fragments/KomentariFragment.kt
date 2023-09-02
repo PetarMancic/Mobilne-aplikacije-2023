@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
@@ -33,6 +34,7 @@ class KomentariFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_komentari, container, false)
     }
 
@@ -75,7 +77,7 @@ class KomentariFragment : Fragment() {
 
 
         val db = FirebaseDatabase.getInstance().reference
-        val query = db.child("recenzije").orderByChild("nazivFrizerskogSalona").equalTo(name)
+        val query = db.child("recenzije").orderByChild("nazivFrizerskogSalona").equalTo(name);
 
         query.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -108,5 +110,20 @@ class KomentariFragment : Fragment() {
 
 
     }
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        val item = menu.findItem(R.id.editFragment)
+        item.isVisible = false
 
+        val item1 = menu.findItem(R.id.signinFragment)
+        item1.isVisible = false
+
+        val item2 = menu.findItem(R.id.signUpFragment)
+        item2.isVisible = false
+
+        val item3= menu.findItem(R.id.filtrirajFragment)
+        item3.isVisible=false;
+
+
+    }
 }

@@ -3,14 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.ListFragment">
-
-    <!-- TODO: Update blank fragment layout -->
+    tools:context=".fragments.KorisniciFragment">
 
     <ListView
-        android:id="@+id/listView1"
+        android:id="@+id/listViewKorisnici"
         android:layout_width="match_parent"
-        android:layout_height="581dp"
-        android:layout_weight="1" />
-
+        android:layout_height="501dp" />
 </FrameLayout>

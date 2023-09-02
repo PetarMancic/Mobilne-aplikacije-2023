@@ -3,6 +3,7 @@ package elfak.mosis.petaraplikacija.fragments
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -36,6 +37,7 @@ class DetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        setHasOptionsMenu(true)
        postaviVrednosti();
 
 
@@ -97,30 +99,55 @@ class DetailFragment : Fragment() {
         //userReference.child("br")
 
 
-        val mapiranjeAtributa = hashMapOf(
-            "opis" to opis,
-            "ocena" to ocena,
-            "nazivFrizerskogSalona" to  nazivFS
-
-        )
-
-        objektiReference.setValue(mapiranjeAtributa).addOnSuccessListener {
-            Toast.makeText(context,"Uspesno dodato u recenzijama ", Toast.LENGTH_SHORT).show()
-            userReference.child("brojBodova").get().addOnSuccessListener {
-                var brBodova = it.value.toString().toInt()
-                brBodova += 5
-                userReference.child("brojBodova").setValue(brBodova)
-
-            }
-            findNavController().navigate(R.id.action_detailFragment_to_mapFragment);
-
-        }.addOnFailureListener()
+        if(opis.isNotEmpty() && ocena.isNotEmpty())
         {
-            Toast.makeText(context,"Nesupesno dodavanje u bazi", Toast.LENGTH_SHORT).show()
+                val mapiranjeAtributa = hashMapOf(
+                    "opis" to opis,
+                    "ocena" to ocena,
+                    "nazivFrizerskogSalona" to nazivFS
+
+                )
+
+                objektiReference.setValue(mapiranjeAtributa).addOnSuccessListener {
+                    Toast.makeText(context, "Uspesno dodato u recenzijama ", Toast.LENGTH_SHORT).show()
+                    userReference.child("brojBodova").get().addOnSuccessListener {
+                        var brBodova = it.value.toString().toInt()
+                        brBodova += 5
+                        userReference.child("brojBodova").setValue(brBodova)
+
+                    }
+                    findNavController().navigate(R.id.action_detailFragment_to_listFragment);
+
+                }.addOnFailureListener()
+                {
+                    Toast.makeText(context, "Nesupesno dodavanje u bazi", Toast.LENGTH_SHORT).show()
+                }
+         }
+        else
+        {
+            Toast.makeText(context, "Nisu popunjena sva polja ", Toast.LENGTH_SHORT).show()
         }
 
 
     }
 
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        val item = menu.findItem(R.id.signinFragment)
+        item.isVisible = false
+
+        val item1=menu.findItem(R.id.HomeFragment)
+        item1.isVisible=false;
+
+        val item2 = menu.findItem(R.id.signUpFragment)
+        item2.isVisible = false
+
+        val item3 = menu.findItem(R.id.editFragment)
+        item3.isVisible = false
+
+        val item4= menu.findItem(R.id.filtrirajFragment);
+        item4.isVisible=false;
+
+    }
 
 }

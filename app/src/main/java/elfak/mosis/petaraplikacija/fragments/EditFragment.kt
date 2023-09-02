@@ -34,6 +34,7 @@ class EditFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var binding: FragmentEditBinding
 
+
    // private lateinit var  IDFS:String;  // sluzi nam da pronadjemo koji FS cemo da editujemo
 
 
@@ -68,6 +69,8 @@ class EditFragment : Fragment() {
         item2.isVisible = false
 
 
+
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -76,7 +79,9 @@ class EditFragment : Fragment() {
         dugmeAdd?.setOnClickListener {
             proveraInputa() // Poziv funkcije za proveru inputa
         }
-    postaviVrednosti();
+        if(frizerskiSalon.vratiID().isNotEmpty()) {
+            postaviVrednosti();
+        }
 
 
 
@@ -111,7 +116,7 @@ class EditFragment : Fragment() {
         val editName: EditText = requireView().findViewById(R.id.ime);
         val editDescription: EditText = requireView().findViewById(R.id.editDescription);
         val radioGroup: RadioGroup = requireView().findViewById(R.id.radioGroup);
-        val numberPicker: EditText = requireView().findViewById(R.id.numberPicker);
+      //  val numberPicker: EditText = requireView().findViewById(R.id.numberPicker);
 
         val selectedId = radioGroup.checkedRadioButtonId;
 
@@ -132,11 +137,13 @@ class EditFragment : Fragment() {
                         if (frizerskiSalon?.MZ == "M") {
                             radioGroup.check(R.id.radioMuski) // Zamenjate sa stvarnim ID-om radio dugmeta
                         }
-                        else
+                        else {
                             radioGroup.check(R.id.radioZenski)
-                        editLongitude.setText(frizerskiSalon?.longitude);
-                        editLatitude.setText(frizerskiSalon?.latitude);
-                        numberPicker.setText(frizerskiSalon?.trenutnaOcena.toString());
+                        }
+                            editLongitude.setText(frizerskiSalon?.longitude);
+                            editLatitude.setText(frizerskiSalon?.latitude);
+                       //    numberPicker.setText(frizerskiSalon?.trenutnaOcena.toString());
+
 
 
                         //val trenutnaOcena= frizerskiSalon?
@@ -144,13 +151,13 @@ class EditFragment : Fragment() {
                             MZ = "M";
 
                         val dugmeIzmeni= requireView().findViewById<Button>(R.id.btnSet);
-                        var ocena=numberPicker.text.toString().toInt();
+                   //     var ocena=numberPicker.text.toString().toDouble();
                         dugmeIzmeni.setOnClickListener()
                         {
                             izmeniUBazi(
                                 editName.text.toString(),
                                 editDescription.text.toString(), MZ,
-                                ocena,
+                               // ocena,
                                 editLongitude.text.toString(),
                                 editLatitude.text.toString()
                             )
@@ -166,14 +173,14 @@ class EditFragment : Fragment() {
 
     }
 
-    private fun izmeniUBazi(ime:String,desc:String,tip:String,ocena:Int, long:String,lat:String,) {
+    private fun izmeniUBazi(ime:String,desc:String,tip:String,/*ocena:Double*/ long:String,lat:String,) {
         val IDFS = frizerskiSalon.vratiID()
         val objekatReference = FirebaseDatabase.getInstance().reference.child("objekti").child(IDFS);
         val noviPodaci: Map<String, Any> = mapOf(
             "name" to ime,
             "description" to desc,
             "MZ" to tip,
-            "trenutnaOcena" to ocena,
+           // "trenutnaOcena" to ocena,
             "longitude" to long,
             "latitude" to lat
         )
@@ -228,7 +235,7 @@ class EditFragment : Fragment() {
         val editName: EditText = requireView().findViewById(R.id.ime);
         val editDescription: EditText = requireView().findViewById(R.id.editDescription);
         val radioGroup: RadioGroup = requireView().findViewById(R.id.radioGroup);
-        val numberPicker: EditText = requireView().findViewById(R.id.numberPicker);
+      // val numberPicker: EditText = requireView().findViewById(R.id.numberPicker);
 
         val selectedId = radioGroup.checkedRadioButtonId;
 
@@ -236,14 +243,14 @@ class EditFragment : Fragment() {
         val latitude = editLatitude.text.toString();
         val name = editName.text.toString();
         val description = editDescription.text.toString();
-        val selectedValue = numberPicker.text.toString().toInt();
+      //  val selectedValue = numberPicker.text.toString().toDouble();
 
-        if (name.isNotEmpty() && description.isNotEmpty() && !selectedValue.equals(0) && latitude.isNotEmpty() && longitude.isNotEmpty() && (selectedId == R.id.radioMuski || selectedId == R.id.radioZenski)) {
+        if (name.isNotEmpty() && description.isNotEmpty()  && latitude.isNotEmpty() && longitude.isNotEmpty() && (selectedId == R.id.radioMuski || selectedId == R.id.radioZenski)) {
             var MZ = "Z";
             if (selectedId == R.id.radioMuski)
                 MZ = "M";
 
-            dodajObjekat(name, description, MZ, selectedValue, longitude, latitude);
+            dodajObjekat(name, description, MZ,0.0,  longitude, latitude);
 
         }
 
@@ -254,13 +261,16 @@ class EditFragment : Fragment() {
         name: String,
         description: String,
         MZ: String,
-        selectedValue: Int,
+        selectedValue: Double,
         Long: String,
         Lat: String
     ) {
 
         val currentUserID = FirebaseAuth.getInstance().currentUser!!.uid
-        val objektiReference = FirebaseDatabase.getInstance().getReference("objekti").push();
+
+        val objektiReference = FirebaseDatabase.getInstance().getReference("objekti")
+        var kljuc= System.currentTimeMillis().toString();
+        val datumKreiranja = System.currentTimeMillis();
 
         val userReference = FirebaseDatabase.getInstance().reference.child("users").child(currentUserID);
         userReference.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -269,11 +279,13 @@ class EditFragment : Fragment() {
                     val user = snapshot.getValue(UserData::class.java)
                     val ime = user?.ime
                     val prezime= user?.prezime;
+                    val korisnickoIme=user?.korisnickoIme;
+
 
 
 
                     if (ime != null && prezime!=null  ) {
-                        objektiReference.setValue(FrizerskiSalon(name, description, MZ,0, Long, Lat,currentUserID,ime,prezime,));
+                        objektiReference.child(kljuc).setValue(FrizerskiSalon(name, description, MZ,0.0, Long, Lat,currentUserID,ime,prezime,korisnickoIme!!,datumKreiranja,kljuc));
                         userReference.child("brojBodova").get().addOnSuccessListener {
                             var brBodova = it.value.toString().toInt()
                             brBodova += 10
@@ -294,6 +306,11 @@ class EditFragment : Fragment() {
         })
 
 
+    }
+
+    override fun onDestroyView() {
+        frizerskiSalon.dodajID("");
+        super.onDestroyView()
     }
 }
 

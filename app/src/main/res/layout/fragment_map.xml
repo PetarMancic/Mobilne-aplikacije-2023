@@ -18,14 +18,35 @@
         android:padding="0dp"
         android:text="Dodaj objekat sa trenutne lokacije" />
 
+    <Button
+        android:id="@+id/buttonSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="50dp"
+        android:text="Search" />
+
     <org.osmdroid.views.MapView
         android:id="@+id/map"
         titlesource="Mapnik"
         android:layout_width="match_parent"
-        android:layout_height="693dp"
+        android:layout_height="687dp"
         android:padding="5dp">
 
     </org.osmdroid.views.MapView>
+
+    <EditText
+        android:id="@+id/editTextText2"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="100dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="radijus u km"
+        android:inputType="numberDecimal" />
 
 
 </FrameLayout>

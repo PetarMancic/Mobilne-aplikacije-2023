@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="elfak.mosis.petaraplikacija.MainActivity">
+
+    <item
+        android:id="@+id/HomeFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="Pocetna" />
+
+    <item
+        android:id="@+id/signinFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="Logovanje " />
+
+    <item
+        android:id="@+id/signUpFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="Registracija  " />
+    <item
+        android:id="@+id/mapFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="Mapa" />
+
+    <item
+        android:id="@+id/listFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="Lista objekata " />
+    <item
+        android:id="@+id/editFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="Dodavanje objekta" />
+
+    <item
+        android:id="@+id/filtrirajFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="Filtriranje" />
+
+    <item
+        android:id="@+id/OdjaviSe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="Odjavi se" />
+
+
+
+</menu>

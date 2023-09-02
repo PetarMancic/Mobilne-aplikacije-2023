@@ -43,24 +43,24 @@
             android:text="Ženski" />
     </RadioGroup>
 
-    <TextView
-        android:id="@+id/textOcenjivanje"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="Ocena 1/10"
-        android:textSize="18sp">
+<!--    <TextView-->
+<!--        android:id="@+id/textOcenjivanje"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:fontFamily="sans-serif-black"-->
+<!--        android:gravity="center_horizontal|center_vertical"-->
+<!--        android:text="Ocena 1/10"-->
+<!--        android:textSize="18sp">-->
 
-    </TextView>
+<!--    </TextView>-->
 
-    <EditText
-        android:id="@+id/numberPicker"
-        android:layout_width="141dp"
-        android:layout_height="59dp"
-        android:layout_gravity="center"
-        android:inputType="number"
-        android:autofillHints="Ocena od 1/10" />
+<!--    <EditText-->
+<!--        android:id="@+id/numberPicker"-->
+<!--        android:layout_width="141dp"-->
+<!--        android:layout_height="59dp"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:inputType="number"-->
+<!--        android:autofillHints="Ocena od 1/10" />-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -85,7 +85,7 @@
         <Button
             android:id="@+id/btnSet"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:layout_marginLeft="120dp"
             android:layout_marginRight="120dp"
             android:layout_weight="1"

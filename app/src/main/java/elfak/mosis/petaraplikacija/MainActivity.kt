@@ -63,19 +63,6 @@ class MainActivity : AppCompatActivity() {
 
         when (item.itemId) {
 
-            /*
-                override fun onCreate(savedInstanceState: Bundle?) {
-                    super.onCreate(savedInstanceState)
-                    setHasOptionsMenu(true)
-                }
-
-                override fun onPrepareOptionsMenu(menu: Menu) {
-                    super.onPrepareOptionsMenu(menu)
-                    for (x in menu.children) {
-                        x.isVisible = false
-                    }
-                }
-             */
             R.id.HomeFragment-> {
                 when (navController.currentDestination?.id) {
 
@@ -85,6 +72,7 @@ class MainActivity : AppCompatActivity() {
                     R.id.signinFragment -> { navController.navigate(R.id.action_signinFragment_to_homeFragment) }
                     R.id.listFragment -> { navController.navigate(R.id.action_listFragment_to_homeFragment) }
                     R.id.editFragment -> { navController.navigate(R.id.action_editFragment_to_homeFragment) }
+                    R.id.filtriranjeFragment->{navController.navigate(R.id.action_filtriranjeFragment_to_homeFragment)}
 
                 }
             }
@@ -112,6 +100,9 @@ class MainActivity : AppCompatActivity() {
                     R.id.signinFragment -> { navController.navigate(R.id.action_signinFragment_to_mapFragment) }
                     R.id.listFragment -> { navController.navigate(R.id.action_listFragment_to_mapFragment) }
                     R.id.editFragment -> { navController.navigate(R.id.action_editFragment_to_mapFragment) }
+                    R.id.detailFragment -> { navController.navigate(R.id.action_detailFragment_to_mapFragment2) }
+                    R.id.filtriranjeFragment->{navController.navigate(R.id.action_filtriranjeFragment_to_mapFragment)}
+
                 }
             }
 
@@ -122,6 +113,8 @@ class MainActivity : AppCompatActivity() {
                     R.id.signinFragment -> { navController.navigate(R.id.action_signinFragment_to_listFragment) }
                     R.id.mapFragment->{navController.navigate(R.id.action_mapFragment_to_listFragment)}
                     R.id.editFragment -> { navController.navigate(R.id.action_editFragment_to_listFragment) }
+                    R.id.detailFragment -> { navController.navigate(R.id.action_detailFragment_to_listFragment) }
+                    R.id.filtriranjeFragment->{navController.navigate(R.id.action_filtriranjeFragment_to_listFragment)}
                 }
             }
             R.id.editFragment -> {
@@ -130,6 +123,28 @@ class MainActivity : AppCompatActivity() {
                     R.id.homeFragment -> { navController.navigate(R.id.action_homeFragment_to_editFragment2) }
                     R.id.mapFragment->{navController.navigate(R.id.action_mapFragment_to_editFragment3)}
                     R.id.listFragment->{navController.navigate(R.id.action_listFragment_to_editFragment)}
+
+                }
+            }
+            R.id.filtrirajFragment -> {
+                when (navController.currentDestination?.id) {
+
+                    R.id.homeFragment -> { navController.navigate(R.id.action_homeFragment_to_filtriranjeFragment) }
+                    R.id.listFragment -> { navController.navigate(R.id.action_listFragment_to_filtriranjeFragment) }
+                    R.id.mapFragment->{navController.navigate(R.id.action_mapFragment_to_filtriranjeFragment2)}
+
+
+                }
+            }
+            R.id.OdjaviSe -> {
+                when (navController.currentDestination?.id) {
+                    R.id.homeFragment -> { navController.navigate(R.id.action_homeFragment_to_signinFragment) }
+                    R.id.mapFragment->{navController.navigate(R.id.action_mapFragment_to_signinFragment)}
+                    R.id.editFragment -> { navController.navigate(R.id.action_editFragment_to_signinFragment) }
+                    R.id.filtrirajFragment->{navController.navigate(R.id.action_filtriranjeFragment_to_signinFragment)}
+                    R.id.listFragment->{navController.navigate(R.id.action_listFragment_to_signinFragment)}
+                    R.id.detailFragment -> { navController.navigate(R.id.action_detailFragment_to_signinFragment) }
+                    R.id.filtriranjeFragment->{navController.navigate(R.id.action_filtriranjeFragment_to_signinFragment)}
 
                 }
             }

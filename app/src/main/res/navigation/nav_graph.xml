@@ -97,6 +97,12 @@
         <action
             android:id="@+id/action_homeFragment_to_editFragment2"
             app:destination="@id/editFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_filtriranjeFragment"
+            app:destination="@id/filtriranjeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_korisniciFragment"
+            app:destination="@id/korisniciFragment" />
     </fragment>
     <fragment
         android:id="@+id/mapFragment"
@@ -127,6 +133,18 @@
         <action
             android:id="@+id/action_mapFragment_to_editFragment3"
             app:destination="@id/editFragment" />
+        <action
+            android:id="@+id/action_mapFragment_to_signinFragment2"
+            app:destination="@id/signinFragment" />
+        <action
+            android:id="@+id/action_mapFragment_to_filtriraniFSFragment"
+            app:destination="@id/filtriraniFSFragment" />
+        <action
+            android:id="@+id/action_mapFragment_to_filtriranjeFragment"
+            app:destination="@id/filtriranjeFragment" />
+        <action
+            android:id="@+id/action_mapFragment_to_filtriranjeFragment2"
+            app:destination="@id/filtriranjeFragment" />
     </fragment>
     <fragment
         android:id="@+id/listFragment"
@@ -154,6 +172,12 @@
         <action
             android:id="@+id/action_listFragment_to_komentariFragment"
             app:destination="@id/komentariFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_signinFragment2"
+            app:destination="@id/signinFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_filtriranjeFragment"
+            app:destination="@id/filtriranjeFragment" />
     </fragment>
     <fragment
         android:id="@+id/probaFragment"
@@ -180,6 +204,9 @@
         <action
             android:id="@+id/action_editFragment_to_listFragment2"
             app:destination="@id/listFragment" />
+        <action
+            android:id="@+id/action_editFragment_to_signinFragment"
+            app:destination="@id/signinFragment" />
     </fragment>
     <fragment
         android:id="@+id/filtrirajFragment"
@@ -201,6 +228,12 @@
         <action
             android:id="@+id/action_detailFragment_to_mapFragment"
             app:destination="@id/mapFragment" />
+        <action
+            android:id="@+id/action_detailFragment_to_signinFragment"
+            app:destination="@id/signinFragment" />
+        <action
+            android:id="@+id/action_detailFragment_to_mapFragment2"
+            app:destination="@id/mapFragment" />
     </fragment>
     <fragment
         android:id="@+id/komentariFragment"
@@ -211,4 +244,46 @@
             android:id="@+id/action_komentariFragment_to_listFragment"
             app:destination="@id/listFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/filtriranjeFragment"
+        android:name="elfak.mosis.petaraplikacija.fragments.FiltriranjeFragment"
+        android:label="fragment_filtriranje"
+        tools:layout="@layout/fragment_filtriranje" >
+        <action
+            android:id="@+id/action_filtriranjeFragment_to_filtriraniFSFragment"
+            app:destination="@id/filtriraniFSFragment"
+            app:popUpTo="@id/filtrirajFragment" />
+        <action
+            android:id="@+id/action_filtriranjeFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_filtriranjeFragment_to_signinFragment"
+            app:destination="@id/signinFragment" />
+        <action
+            android:id="@+id/action_filtriranjeFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+        <action
+            android:id="@+id/action_filtriranjeFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/filtriraniFSFragment"
+        android:name="elfak.mosis.petaraplikacija.fragments.FiltriraniFSFragment"
+        android:label="fragment_filtrirani_f_s"
+        tools:layout="@layout/fragment_filtrirani_f_s" >
+        <action
+            android:id="@+id/action_filtriraniFSFragment_to_filtriranjeFragment"
+            app:destination="@id/filtriranjeFragment" />
+        <action
+            android:id="@+id/action_filtriraniFSFragment_to_signinFragment"
+            app:destination="@id/signinFragment" />
+        <action
+            android:id="@+id/action_filtriraniFSFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/korisniciFragment"
+        android:name="elfak.mosis.petaraplikacija.fragments.KorisniciFragment"
+        android:label="fragment_korisnici"
+        tools:layout="@layout/fragment_korisnici" />
 </navigation>

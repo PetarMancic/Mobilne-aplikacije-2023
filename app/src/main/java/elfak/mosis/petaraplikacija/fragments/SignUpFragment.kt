@@ -19,6 +19,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.Snackbar
+import androidx.compose.ui.text.input.ImeAction
 import androidx.core.app.ActivityCompat
 import androidx.core.view.children
 import androidx.core.view.isVisible
@@ -66,10 +67,7 @@ class SignUpFragment : Fragment() {
         init(view)
         registerEvents()
 
-        binding.slikaHide.setOnClickListener{
-            togglePasswordVisibility(binding.editTextTextPassword,binding.slikaHide2)
 
-        }
 
         profileImageView = view.findViewById(R.id.profilePicture)
         profileImageView.setOnClickListener {
@@ -104,7 +102,8 @@ class SignUpFragment : Fragment() {
                 "ime" to ime,
                 "prezime" to prezime,
                 "brojTelefona" to brojtelefona,
-                "brojBodova" to 0
+                "brojBodova" to 0,
+                "korisnickoIme" to email
 
             )
 
@@ -138,7 +137,7 @@ class SignUpFragment : Fragment() {
             val ime= binding.editTextTextFirstName.text.toString().trim();
             val prezime=binding.editTextTextLastName.text.toString().trim()
             val brojTelefona=binding.editTextPhoneNumber.text.toString().trim()
-
+            val korisnickoIme=binding.editTextTextEmailAddress.text.toString().trim();
 
 
             if( email.isNotEmpty() && pass.isNotEmpty() && verifyPass.isNotEmpty() && ime.isNotEmpty() && prezime.isNotEmpty() && brojTelefona.isNotEmpty() )
@@ -152,8 +151,6 @@ class SignUpFragment : Fragment() {
                             Toast.makeText(context,"Uspesna registracija!!!", Toast.LENGTH_SHORT).show()
                             updateProfileImage();
                             signUP(email,pass,ime,prezime,brojTelefona);
-                           // navControl.navigate(R.id.action_signUpFragment_to_homeFragment);
-
                         }
                         else
                         {
@@ -177,21 +174,7 @@ class SignUpFragment : Fragment() {
         }
     }
 
-    private fun togglePasswordVisibility(editText: EditText, imageView: ImageView) {
 
-        Toast.makeText(context, "Petar", Toast.LENGTH_SHORT).show();
-        val inputPass= binding.editTextTextPassword;
-        if(inputPass.inputType==InputType.TYPE_TEXT_VARIATION_PASSWORD)
-        {
-            inputPass.inputType=InputType.TYPE_CLASS_TEXT
-            imageView.setImageResource(R.drawable.visible)
-        }
-        else
-        {
-            inputPass.inputType= InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-            imageView.setImageResource(R.drawable.hide)
-        }
-    }
 
 
     private fun updateProfileImage() {

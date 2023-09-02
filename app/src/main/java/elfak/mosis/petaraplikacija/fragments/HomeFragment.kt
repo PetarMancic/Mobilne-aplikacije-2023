@@ -64,13 +64,23 @@ class HomeFragment : Fragment() {
 
         var dugmeOdjavise=view.findViewById<Button>(R.id.buttonOdjavise);
         var dugmeFiltriraj=view.findViewById<Button>(R.id.buttonFiltiraj);
+        var dugmePrikaziKorisnike= view.findViewById<Button>(R.id.buttonPrikaziUsers);
         val textViewIme= view.findViewById<TextView>(R.id.txtFirstName);
         val textViewPrezime= view.findViewById<TextView>(R.id.txtLastName);
         val textViewBrojBodova= view.findViewById<TextView>(R.id.txtScore);
 
+
+        dugmeFiltriraj.setOnClickListener()
+        {
+            navControl.navigate(R.id.action_homeFragment_to_filtriranjeFragment);
+        }
         dugmeOdjavise.setOnClickListener()
         {
             navControl.navigate(R.id.action_homeFragment_to_signinFragment);
+        }
+        dugmePrikaziKorisnike.setOnClickListener()
+        {
+            navControl.navigate(R.id.korisniciFragment);
         }
 
         val userId = FirebaseAuth.getInstance().currentUser?.uid
@@ -177,6 +187,8 @@ class HomeFragment : Fragment() {
         val item2 = menu.findItem(R.id.signUpFragment)
         item2.isVisible = false
 
+        val item3 = menu.findItem(R.id.editFragment)
+        item3.isVisible = false
 
     }
 }

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragments.FiltriranjeFragment">
+
+
+
+
+        <RadioGroup
+            android:id="@+id/radiogrupa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center">
+
+            <RadioButton
+                android:id="@+id/poAutoru"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Po autoru" />
+
+            <RadioButton
+                android:id="@+id/poTipu"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Po tipu  (M/Z)" />
+
+            <RadioButton
+                android:id="@+id/poDatumu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Po datumu" />
+        </RadioGroup>
+
+
+    <EditText
+        android:id="@+id/editTextText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="unesite ovde"
+        android:inputType="text" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <DatePicker
+            android:id="@+id/datePickerOd"
+            android:layout_width="0dp"
+            android:layout_height="350dp"
+            android:layout_gravity="center"
+            android:layout_weight="1" />
+
+        <DatePicker
+            android:id="@+id/datePickerDo"
+            android:layout_width="0dp"
+            android:layout_height="350dp"
+            android:layout_gravity="center"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonPretrazi"
+        android:layout_width="125dp"
+        android:layout_height="44dp"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="140dp"
+        android:text="Filtriraj" />
+</LinearLayout>

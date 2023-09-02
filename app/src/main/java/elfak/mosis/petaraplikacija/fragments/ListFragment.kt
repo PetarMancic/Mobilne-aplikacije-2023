@@ -70,12 +70,82 @@ var displayMessage: String? = "";
 
         listView.adapter = adapter
 
-
-        Toast.makeText(context,"Uspesno", Toast.LENGTH_SHORT).show()
         return view
 
 
     }
+
+      //   fun pronadjiIme(idFS: String, callback: (String?) -> Unit) {
+
+      //  }
+
+
+        private fun izracunajProsecnuOcenu(id:String) {
+
+            val IDFS = id;
+            val db = FirebaseDatabase.getInstance().reference
+
+            val referencaFS = FirebaseDatabase.getInstance().reference.child("objekti").child(IDFS)
+            val objektiReference = db.child("objekti").child(id)
+            objektiReference.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        val frizerskiSalon = snapshot.getValue(FrizerskiSalon::class.java)
+                        val ime = frizerskiSalon?.name
+
+                        if (ime != null) {
+                            val recenzijeQuery = db.child("recenzije").orderByChild("nazivFrizerskogSalona").equalTo(ime)
+
+                            recenzijeQuery.addValueEventListener(object : ValueEventListener {
+                                override fun onDataChange(recenzijeSnapshot: DataSnapshot) {
+                                    val ratings: MutableList<Int> = mutableListOf()
+
+                                    for (recenzija in recenzijeSnapshot.children) {
+                                        val ocenaValue = recenzija.child("ocena").getValue(String::class.java);
+                                        val ocena= ocenaValue?.toInt();
+                                        if (ocena != null) {
+                                            ratings.add(ocena)
+                                        }
+
+                                    }
+
+                                    // Izracunavanje prosečne ocene
+                                    val sum = ratings.sumBy { it }
+                                    val averageRating = if (ratings.isNotEmpty()) {
+                                        sum.toDouble() / ratings.size
+                                    } else {
+                                        0.0
+                                    }
+                                    referencaFS.child("trenutnaOcena").setValue(averageRating).addOnCompleteListener()
+                                    {task->
+                                        if(task.isSuccessful)
+                                        {
+
+
+                                            // Osvežavanje liste
+                                            adapter?.notifyDataSetChanged()
+                                        }
+
+                                    }
+                                }
+
+                                override fun onCancelled(error: DatabaseError) {
+                                    Toast.makeText(context,error.message,Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                        }
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    // Obrada greške
+                }
+            })
+
+
+            adapter?.notifyDataSetChanged();
+
+        }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -147,6 +217,8 @@ var displayMessage: String? = "";
 
         val item2 = menu.findItem(R.id.signUpFragment)
         item2.isVisible = false
+        val item3= menu.findItem(R.id.editFragment)
+        item3.isVisible=false;
     }
 
     fun ucitajSveFrizerskeSalone()
@@ -158,11 +230,14 @@ var displayMessage: String? = "";
         db.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
+                    frizerskiSalonList.clear()
 
                     for(jedanObjekat in snapshot.children)
                     {
                         val jedanFrizerskiSalon = jedanObjekat.getValue(FrizerskiSalon::class.java)
                         jedanFrizerskiSalon?.key = jedanObjekat.key!!
+                        izracunajProsecnuOcenu(jedanFrizerskiSalon!!.key);
+                        adapter?.notifyDataSetChanged();
                         frizerskiSalonList.add(jedanFrizerskiSalon!!)
                     }
                 }

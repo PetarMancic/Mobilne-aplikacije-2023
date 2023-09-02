@@ -9,7 +9,7 @@
     <TextView
         android:id="@+id/txtFirstName"
         style="@style/Mojstajl"
-        android:layout_width="70dp"
+        android:layout_width="149dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
@@ -21,14 +21,14 @@
     <TextView
         android:id="@+id/txtLastName"
         style="@style/Mojstajl"
-        android:layout_width="99dp"
-        android:layout_height="wrap_content"
+        android:layout_width="155dp"
+        android:layout_height="36dp"
         android:layout_below="@id/txtFirstName"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
         android:gravity="center_horizontal|center_vertical"
         android:text="Prezime"
-        android:textSize="18sp" />
+        android:textSize="24sp" />
 
     <ImageView
         android:id="@+id/imgProfile"
@@ -48,7 +48,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="107dp"
-        android:layout_marginTop="232dp"
+        android:layout_marginTop="242dp"
         android:layout_marginEnd="107dp"
         android:gravity="center_horizontal|center_vertical"
         android:text="Trenutni broj bodova"
@@ -84,4 +84,19 @@
         android:layout_marginLeft="45dp"
         android:layout_marginEnd="45dp"
         android:text="Odjavi se" />
+
+    <Button
+        android:id="@+id/buttonPrikaziUsers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="120dp"
+        android:layout_marginLeft="120dp"
+        android:layout_marginEnd="112dp"
+        android:layout_marginRight="120dp"
+        android:layout_marginBottom="272dp"
+        android:text="PRIKAZI KORISNIKE" />
 </RelativeLayout>

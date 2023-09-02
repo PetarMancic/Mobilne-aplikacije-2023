@@ -107,9 +107,7 @@ class SigninFragment : Fragment() {
                                    val userData = snapshot.getValue(UserData::class.java)
                                     if(userData!=null) {
                                         korisnici.dodajUsera(userData);
-                                        // Sad raboti, kude je problem dalje
-                                        //edit fragment, kad on treba da se prikaze, ili pucaju greske,
-                                        //ili se prikaze ali njegov sadrzaj ne bude, nego bude sadrzaj od signUpfragment
+
                                         navControl.navigate(R.id.action_signinFragment_to_homeFragment);
                                     }
                                }
@@ -125,6 +123,9 @@ class SigninFragment : Fragment() {
                         Toast.makeText(context, it.exception?.message, Toast.LENGTH_SHORT).show()
                     }
                 }
+            }
+            else{
+                Toast.makeText(context, "Neispravni podaci!", Toast.LENGTH_SHORT).show()
             }
 
         }

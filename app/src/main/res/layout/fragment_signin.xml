@@ -51,16 +51,6 @@
         android:textSize="18sp"
        />
 
-    <ImageView
-        android:id="@+id/slikaHide"
-        android:layout_width="26dp"
-        android:layout_height="26dp"
-        android:layout_alignTop="@id/editTextTextPassword"
-        android:layout_alignEnd="@id/editTextTextPassword"
-        android:src="@drawable/hide"
-        android:layout_alignBottom="@id/editTextTextPassword"
-        android:layout_marginStart="8dp" />
-
 
     <Button
         android:id="@+id/loginButtonsignup"
@@ -77,7 +67,7 @@
 
         android:layout_marginRight="80dp"
         android:background="@android:color/holo_green_light"
-        android:text="Log In" />
+        android:text="Uloguj se" />
 
     <TextView
         android:id="@+id/signUpLabel"
@@ -94,7 +84,7 @@
         android:layout_marginRight="80dp"
         android:layout_marginBottom="135dp"
         android:gravity="center_horizontal|center_vertical"
-        android:text="Register now"
+        android:text="Registrujte se!"
         android:textColor="@android:color/holo_blue_dark"
         android:textSize="18sp" />
 
